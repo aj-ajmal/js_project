@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To - do</title>
+     <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #f4f4f4;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+     
+    }
+    h1{
+        display: flex;
+        justify-content: center;
+        color: rgba(8, 237, 237, 0.792);
+    }
+
+    input {
+      padding: 5px;
+      font-size: 16px;
+      width: 200px;
+      margin: 20px;
+
+    }
+
+    button {
+      padding: 5px;
+      font-size: 16px;
+      margin-left: 70px;
+      width: 100px;
+      
+     
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      padding: 10px;
+      background-color: #fff;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    li.completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    li button {
+      float: right;
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover{
+        background-color: aqua;
+        border: none;
+        border-radius: 20px;
+        color: tomato;
+    }
+  </style>
+</head>
+<body>
+     <h1>TO - DO List</h1>
+    <input  id = "input"type="text" placeholder="         Enter the tasks">
+    <button id="add">Add tasks</button>
+    <ul></ul>
+    <script>
+        const input = document.getElementById("input");
+        const add = document.getElementById("add");
+        const ul = document.querySelector("ul");
+
+        add.addEventListener("click" , function(){
+            const tasktext = input.value.trim();
+            //value fun get value for user  
+            // trim fun used to remove all the white space form  the input 
+            if (tasktext === "") {
+                alert("please enter the task..!")
+                return;
+            }
+            const li = document.createElement("li");
+            li.textContent = tasktext;
+
+            li.addEventListener("click" , function() {
+                li.classList.toggle("completed");
+            }
+        );
+
+            const delbtn = document.createElement("button");
+            delbtn.textContent = "delete";
+            delbtn.addEventListener ("click" , function(e)
+        {
+            e.stopPropagation();
+            ul.removeChild(li);
+        });
+
+        li.appendChild(delbtn);
+        ul.appendChild(li);
+
+
+        });
+    </script>
+</body>
+</html>
