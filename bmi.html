@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI--Calc</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(90deg, #A100FF 29%, #71C4FF 73%);
+            background-size: cover;
+            color: white;
+        }
+
+        input {
+            margin: 10px;
+            padding: 12px 20px;
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            background-color: #ffffff;
+            color: #A100FF;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.8s ease-in;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #A100FF;
+            color: #ffffff;
+        }
+
+        h1 {
+            margin: 10px 0;
+            color: rgb(84, 246, 69);
+        }
+        p{
+            margin: 10px 0;
+            color: rgb(247, 225, 119);
+            font-size:large;
+            font-weight: bold;
+        }
+        .btn-grp {
+            display: flex;
+            gap: 40px;
+            margin-top: 15px;
+            }
+            .head{
+               padding-bottom: 30px;
+            }
+
+
+
+            @media (max-width:650px) {
+
+             body {
+                    display: grid;
+                    flex-direction:row-reverse;
+                    align-items: center;
+                    justify-content: center;
+                    height: 90vh;
+                    margin: 0;
+                      font-family: Arial, sans-serif;
+                        background-image: linear-gradient(90deg, #b059e3 29%, #024b7e 73%);
+                        background-size: cover;
+                        color: white;
+                    }
+
+                     input {
+                            margin: 5px;
+                            padding: 12px 20px;
+                            border-radius: 20px;
+                            border: none;
+                            font-size: 16px;
+                            width: 200px;
+                            text-align: center;
+                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+         button {
+            margin-top: 8px;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            background-color: #ffffff;
+            color: #A100FF;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.8s ease-in;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+           .head{
+               padding-bottom: 5px;
+               padding-top: 80px;
+               
+            }
+
+          }
+                
+    </style>
+</head>
+<body>
+    <h1 class="head">BMI Calculator</h1>
+    <input id="height" type="text" placeholder="Height in cm">
+    <input id="weight" type="text" placeholder="Weight in kg">
+    <div class="btn-grp">
+    <button id="mbtn">BMI</button>  
+    <button id="btn">Reset</button>
+    </div>
+    <h1 id="value"></h1>
+    <p id="last"></p>
+  
+
+    <script>
+        const btn = document.getElementById('mbtn')
+        const hgt = document.getElementById('height')
+        const wgt = document.getElementById('weight')
+        const val = document.getElementById('value')
+        const las = document.getElementById('last')
+        const btn1 = document.getElementById('btn')
+
+        btn.addEventListener("click", find)
+
+        function find() {
+            const bmi = (10000 * wgt.value) / (hgt.value ** 2);
+            val.textContent = bmi.toFixed(1);
+         
+             if ((hgt.value === "") || ( wgt.value ===""))
+               {
+                alert("Fill all the values")
+                val.textContent = " "
+                las.textContent = " "
+               }
+               else if ((wgt.value > 150) || (hgt.value > 200)){
+                    alert("Invalid input")
+                     val.textContent = " "
+               }
+           else if (bmi <= 18) {
+                las.textContent = "You are underweight"
+            }
+            else if (bmi > 18 && bmi < 25) {
+                las.textContent = "You have a good weight"
+            }
+            else if (bmi >= 25 && bmi <= 35) {
+                las.textContent = "You are overweight"
+            }
+            else if (bmi >36) {
+                las.textContent = "You are obese"
+            }   
+        }
+          btn1.addEventListener("click", clear)
+
+         function clear() {
+            hgt.value ="";
+            wgt.value = "";
+            val.textContent = "";
+            las.textContent = "";
+        }
+    </script>
+</body>
+</html>
